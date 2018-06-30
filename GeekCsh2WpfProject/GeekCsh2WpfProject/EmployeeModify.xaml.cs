@@ -27,6 +27,7 @@ namespace GeekCsh2WpfProject
             Departments = departments;
             cbDepartment.ItemsSource = Departments;
             cbDepartment.SelectedIndex = 0;
+            btnAccept.Click += btnAcceptClick;
         }
 
         public ObservableCollection<Department> Departments;

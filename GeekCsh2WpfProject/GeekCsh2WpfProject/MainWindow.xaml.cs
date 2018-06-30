@@ -83,15 +83,31 @@ namespace GeekCsh2WpfProject
         {
             EmployeeModify empMod = new EmployeeModify(departments);
             empMod.Owner = this;
-            empMod.lblEmplName.Content = lbEmployee.SelectedItem.ToString();
+            empMod.lblEmplName.Content = lbEmployee.SelectedItem.ToString().Split('\t')[1];
             empMod.tbId.Text = lbEmployee.SelectedItem.ToString().Split('\t')[0];
             empMod.tbName.Text = lbEmployee.SelectedItem.ToString().Split('\t')[1];
             empMod.tbAge.Text = lbEmployee.SelectedItem.ToString().Split('\t')[2];
             empMod.tbSalary.Text = lbEmployee.SelectedItem.ToString().Split('\t')[3];
+            empMod.cbDepartment.SelectedIndex = cbDepartment.SelectedIndex;
             empMod.Show();
+            empMod.btnAccept.Click += delegate
+            {
+                int a = cbDepartment.SelectedIndex;
+                int b = lbEmployee.SelectedIndex;
+                departments.ElementAt(a).Members.ElementAt(b).Id = empMod.Id;
+                departments.ElementAt(a).Members.ElementAt(b).Name = empMod.Name;
+                departments.ElementAt(a).Members.ElementAt(b).Age = empMod.Age;
+                departments.ElementAt(a).Members.ElementAt(b).Salary = empMod.Salary;
+                if (empMod.cbDepartment.SelectedIndex != a)
+                {
+                    departments.ElementAt(empMod.cbDepartment.SelectedIndex)
+                        .Members.Add(departments.ElementAt(a).Members.ElementAt(b));
+                    departments.ElementAt(a).Members.RemoveAt(b);
+                }
+                lbEmployee.ItemsSource = null;
+                lbEmployee.ItemsSource =
+                    departments.ElementAt(a).Members;
+            };
         }
-
-
-
     }
 }
