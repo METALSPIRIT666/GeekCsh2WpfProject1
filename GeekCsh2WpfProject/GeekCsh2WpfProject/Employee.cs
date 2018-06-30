@@ -12,7 +12,6 @@ namespace GeekCsh2WpfProject
         public string Name { get; set; }
         public int Age { get; set; }
         public double Salary { get; set; }
-        public Department Department; 
 
         public override string ToString() => $"{Id}\t{Name}\t{Age}\t{Salary}";
     }

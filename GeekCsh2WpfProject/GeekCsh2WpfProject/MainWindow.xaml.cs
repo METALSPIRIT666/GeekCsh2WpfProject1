@@ -44,6 +44,7 @@ namespace GeekCsh2WpfProject
             cbDepartment.ItemsSource = departments;
             lbDepartment.ItemsSource = departments;
             cbDepartment.SelectionChanged += cbDepartmentSelectionChanged;
+            lbDepartment.MouseDoubleClick += lbDepartmentModify;
             cbDepartment.SelectedIndex = 0;
         }
 
@@ -52,6 +53,14 @@ namespace GeekCsh2WpfProject
         {
             ComboBox cmb = (ComboBox)sender;
             lbEmployee.ItemsSource = departments.ElementAt(cmb.SelectedIndex).Members;
+        }
+
+        private void lbDepartmentModify(object sender, MouseButtonEventArgs e)
+        {
+            DepartmentModify1 depMod = new DepartmentModify1();
+            depMod.Owner = this;
+            depMod.lblDepName.Content = (sender as ListBox).SelectedItem.ToString();
+            depMod.Show();
         }
     }
 }

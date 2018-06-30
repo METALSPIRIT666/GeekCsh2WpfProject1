@@ -1,0 +1,54 @@
+﻿<Window x:Class="GeekCsh2WpfProject.DepartmentModify1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeekCsh2WpfProject"
+        mc:Ignorable="d"
+        Title="DepartmentModify1"
+        Height="200"
+        Width="400"
+        MinHeight="200"
+        MinWidth="400"
+        MaxHeight="200"
+        MaxWidth="400"
+        Background="Azure"
+        >
+    <Grid>
+        <Label x:Name="lblDepName"
+               Content="Label"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               RenderTransformOrigin="0.474,-0.154"
+               Height="45"
+               Width="392"
+               FontSize="20"/>
+        <TextBox x:Name="tbId"
+                 HorizontalAlignment="Left"
+                 Height="30"
+                 Margin="10,50,0,0"
+                 TextWrapping="Wrap"
+                 Text="Id"
+                 VerticalAlignment="Top"
+                 Width="64"
+                 FontSize="14"/>
+
+        <TextBox x:Name="tbName"
+                 HorizontalAlignment="Left"
+                 Height="30"
+                 Margin="124,50,0,0"
+                 TextWrapping="Wrap"
+                 Text="Name"
+                 VerticalAlignment="Top"
+                 Width="222"
+                 FontSize="14"/>
+        <Button x:Name="btnAccept"
+                Content="Accept"
+                HorizontalAlignment="Left"
+                Margin="10,130,0,0"
+                VerticalAlignment="Top"
+                Width="98"
+                Height="30"/>
+
+    </Grid>
+</Window>
