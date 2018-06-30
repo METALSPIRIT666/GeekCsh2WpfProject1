@@ -45,6 +45,7 @@ namespace GeekCsh2WpfProject
             lbDepartment.ItemsSource = departments;
             cbDepartment.SelectionChanged += cbDepartmentSelectionChanged;
             lbDepartment.MouseDoubleClick += lbDepartmentDoubleClick;
+            lbEmployee.MouseDoubleClick += lbEmployeeDoubleClick;
             cbDepartment.SelectedIndex = 0;
         }
 
@@ -75,11 +76,22 @@ namespace GeekCsh2WpfProject
                 cbDepartment.ItemsSource = null;
                 cbDepartment.ItemsSource = departments;
                 cbDepartment.SelectedIndex = b;
-
             };
-
         }
 
-        
+        private void lbEmployeeDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            EmployeeModify empMod = new EmployeeModify(departments);
+            empMod.Owner = this;
+            empMod.lblEmplName.Content = lbEmployee.SelectedItem.ToString();
+            empMod.tbId.Text = lbEmployee.SelectedItem.ToString().Split('\t')[0];
+            empMod.tbName.Text = lbEmployee.SelectedItem.ToString().Split('\t')[1];
+            empMod.tbAge.Text = lbEmployee.SelectedItem.ToString().Split('\t')[2];
+            empMod.tbSalary.Text = lbEmployee.SelectedItem.ToString().Split('\t')[3];
+            empMod.Show();
+        }
+
+
+
     }
 }
