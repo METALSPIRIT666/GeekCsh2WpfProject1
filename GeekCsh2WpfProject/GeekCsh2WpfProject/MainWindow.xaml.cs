@@ -44,7 +44,7 @@ namespace GeekCsh2WpfProject
             cbDepartment.ItemsSource = departments;
             lbDepartment.ItemsSource = departments;
             cbDepartment.SelectionChanged += cbDepartmentSelectionChanged;
-            lbDepartment.MouseDoubleClick += lbDepartmentModify;
+            lbDepartment.MouseDoubleClick += lbDepartmentDoubleClick;
             cbDepartment.SelectedIndex = 0;
         }
 
@@ -55,7 +55,7 @@ namespace GeekCsh2WpfProject
             lbEmployee.ItemsSource = departments.ElementAt(cmb.SelectedIndex).Members;
         }
 
-        private void lbDepartmentModify(object sender, MouseButtonEventArgs e)
+        private void lbDepartmentDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DepartmentModify1 depMod = new DepartmentModify1();
             depMod.Owner = this;
