@@ -42,6 +42,7 @@ namespace GeekCsh2WpfProject
         {
             InitializeComponent();
             cbDepartment.ItemsSource = departments;
+            lbDepartment.ItemsSource = departments;
             cbDepartment.SelectionChanged += cbDepartmentSelectionChanged;
             cbDepartment.SelectedIndex = 0;
         }

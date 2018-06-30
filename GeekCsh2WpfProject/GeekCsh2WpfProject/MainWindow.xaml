@@ -29,5 +29,15 @@
                   Width="263" 
                   Height="52" 
                   FontSize="18"/>
+
+        <ListBox x:Name="lbDepartment"
+                 HorizontalAlignment="Left"
+                 Grid.Column="0"
+                 Height="99"
+                 VerticalAlignment="Top"
+                 Width="263" 
+                 Margin="15,98,0,0"
+                 Background="Azure"
+                 FontSize="16"/>
     </Grid>
 </Window>
