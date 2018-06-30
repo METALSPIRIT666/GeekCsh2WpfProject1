@@ -33,6 +33,7 @@ namespace GeekCsh2WpfProject
         {
             Id = int.Parse(tbId.Text);
             Name = tbName.Text;
+            Close();
         }
     }
 }

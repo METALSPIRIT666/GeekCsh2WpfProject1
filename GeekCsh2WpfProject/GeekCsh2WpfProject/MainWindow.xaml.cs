@@ -59,8 +59,17 @@ namespace GeekCsh2WpfProject
         {
             DepartmentModify1 depMod = new DepartmentModify1();
             depMod.Owner = this;
-            depMod.lblDepName.Content = (sender as ListBox).SelectedItem.ToString();
+            depMod.lblDepName.Content = lbDepartment.SelectedItem.ToString();
             depMod.Show();
+            depMod.btnAccept.Click += delegate
+            {
+                int a = lbDepartment.SelectedIndex;
+                departments.ElementAt(a).Id = depMod.Id;
+                departments.ElementAt(a).Name = depMod.Name;
+            };
+
         }
+
+        
     }
 }

@@ -48,7 +48,8 @@
                 Margin="10,130,0,0"
                 VerticalAlignment="Top"
                 Width="98"
-                Height="30"/>
+                Height="30"
+                FontSize="14"/>
 
     </Grid>
 </Window>
