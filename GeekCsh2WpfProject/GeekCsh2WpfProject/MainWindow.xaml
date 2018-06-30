@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekCsh2WpfProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Height="450" 
+        Width="800"
+        MinHeight="400"
+        MinWidth="700">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="lbEmployee" 
+                 Grid.Column="1"
+                 Margin="0,15,0,0"
+                 Background="AntiqueWhite"
+                 FontSize="16"/>
+
+        <ComboBox x:Name="cbDepartment" 
+                  HorizontalAlignment="Left"
+                  Margin="15,15,0,0"
+                  VerticalAlignment="Top"
+                  Width="263" 
+                  Height="52" 
+                  FontSize="18"/>
     </Grid>
 </Window>
