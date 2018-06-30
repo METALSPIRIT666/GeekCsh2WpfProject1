@@ -52,7 +52,8 @@ namespace GeekCsh2WpfProject
             SelectionChangedEventArgs e)
         {
             ComboBox cmb = (ComboBox)sender;
-            lbEmployee.ItemsSource = departments.ElementAt(cmb.SelectedIndex).Members;
+            if (cmb.ItemsSource != null)
+                lbEmployee.ItemsSource = departments.ElementAt(cmb.SelectedIndex).Members;
         }
 
         private void lbDepartmentDoubleClick(object sender, MouseButtonEventArgs e)
@@ -60,12 +61,21 @@ namespace GeekCsh2WpfProject
             DepartmentModify1 depMod = new DepartmentModify1();
             depMod.Owner = this;
             depMod.lblDepName.Content = lbDepartment.SelectedItem.ToString();
+            depMod.tbId.Text = lbDepartment.SelectedItem.ToString().Split('\t')[0];
+            depMod.tbName.Text = lbDepartment.SelectedItem.ToString().Split('\t')[1];
             depMod.Show();
             depMod.btnAccept.Click += delegate
             {
                 int a = lbDepartment.SelectedIndex;
+                int b = cbDepartment.SelectedIndex;
                 departments.ElementAt(a).Id = depMod.Id;
                 departments.ElementAt(a).Name = depMod.Name;
+                lbDepartment.ItemsSource = null;
+                lbDepartment.ItemsSource = departments;
+                cbDepartment.ItemsSource = null;
+                cbDepartment.ItemsSource = departments;
+                cbDepartment.SelectedIndex = b;
+
             };
 
         }
