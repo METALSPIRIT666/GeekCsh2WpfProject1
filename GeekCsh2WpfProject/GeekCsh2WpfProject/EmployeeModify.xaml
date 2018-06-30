@@ -30,7 +30,7 @@
                  Text="Id"
                  VerticalAlignment="Top"
                  Width="35"
-                 FontSize="14"/>
+                 FontSize="{StaticResource ordinaryFontSize}"/>
         <TextBox x:Name="tbName"
                  HorizontalAlignment="Left"
                  Height="30"
@@ -39,7 +39,7 @@
                  Text="Name"
                  VerticalAlignment="Top"
                  Width="191"
-                 FontSize="14"/>
+                 FontSize="{StaticResource ordinaryFontSize}"/>
         <TextBox x:Name="tbAge"
                  HorizontalAlignment="Left"
                  Height="30"
@@ -48,7 +48,7 @@
                  Text="Age"
                  VerticalAlignment="Top"
                  Width="32"
-                 FontSize="14"/>
+                 FontSize="{StaticResource ordinaryFontSize}"/>
         <TextBox x:Name="tbSalary"
                  HorizontalAlignment="Left"
                  Height="30"
@@ -57,7 +57,7 @@
                  Text="Salary"
                  VerticalAlignment="Top"
                  Width="99"
-                 FontSize="14"/>
+                 FontSize="{StaticResource ordinaryFontSize}"/>
         <Button x:Name="btnAccept"
                 Content="Accept"
                 HorizontalAlignment="Left"
@@ -65,13 +65,13 @@
                 VerticalAlignment="Top"
                 Width="98"
                 Height="30"
-                FontSize="14"/>
+                FontSize="{StaticResource ordinaryFontSize}"/>
         <ComboBox x:Name="cbDepartment"
                   HorizontalAlignment="Left"
                   Margin="231,85,0,0"
                   VerticalAlignment="Top"
                   Width="151"
                   Height="30"
-                  FontSize="14"/>
+                  FontSize="{StaticResource ordinaryFontSize}"/>
     </Grid>
 </Window>
