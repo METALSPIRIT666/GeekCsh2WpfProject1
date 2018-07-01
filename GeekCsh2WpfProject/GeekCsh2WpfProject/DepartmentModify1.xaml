@@ -13,7 +13,7 @@
         MaxHeight="200"
         MaxWidth="400"
         Background="Azure"
-        >
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="lblDepName"
                Content="{Binding Name}"

@@ -12,6 +12,7 @@
         MinWidth="400"
         MaxHeight="200"
         MaxWidth="400"
+        WindowStartupLocation="CenterScreen"
         Background="AntiqueWhite">
     <Grid>
         <Label x:Name="lblEmplName"

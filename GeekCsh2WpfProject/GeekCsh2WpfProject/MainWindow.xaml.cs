@@ -32,6 +32,7 @@ namespace GeekCsh2WpfProject
             cbDepartment.SelectionChanged += delegate { p.DepSelectionChanged(); };
             lbDepartment.MouseDoubleClick += delegate { p.DepModify(); };
             lbEmployee.MouseDoubleClick += delegate { p.EmpModify(); };
+            btnDepAdd.Click += delegate { p.DepAdd(); };
         }
     }
 }

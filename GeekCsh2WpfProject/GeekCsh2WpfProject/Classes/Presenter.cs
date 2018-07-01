@@ -44,5 +44,12 @@ namespace GeekCsh2WpfProject
             new EmployeeModify(model.Departments, viev.lbEmployee.SelectedItem as Employee,
                         viev.cbDepartment.SelectedIndex).ShowDialog();
         }
+
+        public void DepAdd()
+        {
+            Department newDep = new Department();
+            model.Departments.Add(newDep);
+            new DepartmentModify1(newDep).ShowDialog();
+        }
     }
 }

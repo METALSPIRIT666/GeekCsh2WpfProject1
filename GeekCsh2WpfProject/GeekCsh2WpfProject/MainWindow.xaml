@@ -11,8 +11,13 @@
         MaxHeight="450" 
         MaxWidth="780"
         MinHeight="450" 
-        MinWidth="780">
+        MinWidth="780"
+        WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="289*"/>
             <ColumnDefinition Width="483*"/>
@@ -23,7 +28,7 @@
                   Margin="0,15,5,15"
                   Background="AntiqueWhite"
                   FontSize="16" 
-                  HorizontalAlignment="Right" Width="460">
+                  HorizontalAlignment="Right" Width="460" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" 
@@ -43,10 +48,9 @@
         </ListView>
 
         <ComboBox x:Name="cbDepartment"
-                  Margin="15,15,7,0"
+                  Margin="18,15,11,0"
                   VerticalAlignment="Top" 
                   Height="30"
-                  Width="260"
                   FontSize="18">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -72,11 +76,20 @@
                     <GridViewColumn Header="Id" 
                                     Width="50" 
                                     DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Name" 
+                    <GridViewColumn Header="Name"
+                                    Width="200" 
                                     DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
+        <Button x:Name="btnDepAdd"
+                Grid.Column="0"
+                Grid.Row="1"
+                Margin="15,30,15,30"
+                Content="Add Department"
+                FontSize="26">
+        </Button>
+        
     </Grid>
 </Window>
