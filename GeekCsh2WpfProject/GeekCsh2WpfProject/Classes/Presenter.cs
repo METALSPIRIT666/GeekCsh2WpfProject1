@@ -9,8 +9,8 @@ namespace GeekCsh2WpfProject
 {
     public class Presenter
     {
-        private Model model;
         private MainWindow viev;
+        private Model model;
 
         public Presenter(MainWindow mW)
         {

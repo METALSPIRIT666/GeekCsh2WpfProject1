@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,16 +15,15 @@ using System.Windows.Shapes;
 namespace GeekCsh2WpfProject
 {
     /// <summary>
-    /// Логика взаимодействия для DepartmentModify1.xaml
+    /// Логика взаимодействия для EmployeeBasicModify.xaml
     /// </summary>
-    public partial class DepartmentModify1 : Window
+    public partial class EmployeeBasicModify : Window
     {
-        public DepartmentModify1(Department dep)
+        public EmployeeBasicModify(Employee emp)
         {
             InitializeComponent();
-            this.DataContext = dep;
+            DataContext = emp;
             btnAccept.Click += delegate { Close(); };
-            btnEmployees.Click += delegate{ new DepartmentModify2(dep).ShowDialog(); };
         }
     }
 }

@@ -26,8 +26,8 @@
         <ListView x:Name="lbEmployee"
                   Grid.Column="1"
                   Margin="0,15,5,15"
+                  FontSize="16"
                   Background="AntiqueWhite"
-                  FontSize="16" 
                   HorizontalAlignment="Right" Width="460" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>

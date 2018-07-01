@@ -62,10 +62,10 @@
         <Button x:Name="btnAccept"
                 Content="Accept"
                 HorizontalAlignment="Left"
-                Margin="10,130,0,0"
+                Margin="10,100,0,0"
                 VerticalAlignment="Top"
-                Width="98"
-                Height="30"
+                Width="135"
+                Height="60"
                 FontSize="{StaticResource ordinaryFontSize}"/>
 
         <ComboBox x:Name="cbDepartment"
