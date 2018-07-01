@@ -30,10 +30,5 @@ namespace GeekCsh2WpfProject
         public ObservableCollection<Employee> Members { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public override string ToString()
-        {
-            return $"{Id}\t{Name}";
-        }
     }
 }

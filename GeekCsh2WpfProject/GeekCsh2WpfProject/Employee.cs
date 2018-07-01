@@ -52,10 +52,5 @@ namespace GeekCsh2WpfProject
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public override string ToString()
-        {
-            return $"{Id}\t{Name}\t{Age}\t{Salary}";
-        }
     }
 }
