@@ -7,37 +7,76 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
-        Width="800"
-        MinHeight="400"
-        MinWidth="700">
+        Width="780"
+        MaxHeight="450" 
+        MaxWidth="780"
+        MinHeight="450" 
+        MinWidth="780">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="289*"/>
+            <ColumnDefinition Width="483*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="lbEmployee" 
-                 Grid.Column="1"
-                 Margin="0,15,0,0"
-                 Background="AntiqueWhite"
-                 FontSize="16"/>
+        <ListView x:Name="lbEmployee"
+                  Grid.Column="1"
+                  Margin="0,15,5,15"
+                  Background="AntiqueWhite"
+                  FontSize="16" 
+                  HorizontalAlignment="Right" Width="460">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" 
+                                    Width="50" 
+                                    DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" 
+                                    Width="200" 
+                                    DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Age" 
+                                    Width="50" 
+                                    DisplayMemberBinding="{Binding Age}"/>
+                    <GridViewColumn Header="Salary" 
+                                    Width="150" 
+                                    DisplayMemberBinding="{Binding Salary}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-        <ComboBox x:Name="cbDepartment" 
+        <ComboBox x:Name="cbDepartment"
+                  Margin="15,15,7,0"
+                  VerticalAlignment="Top" 
+                  Height="30"
+                  Width="260"
+                  FontSize="18">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" Width="40"/>
+                        <TextBlock Text="{Binding Name}" Width="120"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ListView x:Name="lbDepartment"                  
                   HorizontalAlignment="Left"
-                  Margin="15,15,0,0"
+                  Grid.Column="0"
+                  Height="214"
                   VerticalAlignment="Top"
-                  Width="263" 
-                  Height="52" 
-                  FontSize="18"/>
+                  Width="260" 
+                  Margin="15,64,0,0"
+                  Background="Azure"
+                  FontSize="16">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" 
+                                    Width="50" 
+                                    DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" 
+                                    DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-        <ListBox x:Name="lbDepartment"
-                 HorizontalAlignment="Left"
-                 Grid.Column="0"
-                 Height="99"
-                 VerticalAlignment="Top"
-                 Width="263" 
-                 Margin="15,98,0,0"
-                 Background="Azure"
-                 FontSize="16"/>
     </Grid>
 </Window>

@@ -20,29 +20,22 @@ namespace GeekCsh2WpfProject
     /// </summary>
     public partial class EmployeeModify : Window
     {
-        public EmployeeModify(ObservableCollection<Department> departments)
+        public EmployeeModify(ObservableCollection<Department> deps,
+            Employee empl, int depIndex)
         {
             InitializeComponent();
-
-            Departments = departments;
-            cbDepartment.ItemsSource = Departments;
-            cbDepartment.SelectedIndex = 0;
-            btnAccept.Click += btnAcceptClick;
-        }
-
-        public ObservableCollection<Department> Departments;
-        public int Id { get; set; }
-        public int Age { get; set; }
-        public string Name { get; set; }
-        public double Salary { get; set; }
-
-        private void btnAcceptClick(object sender, RoutedEventArgs e)
-        {
-            Id = int.Parse(tbId.Text);
-            Age = int.Parse(tbAge.Text);
-            Name = tbName.Text;
-            Salary = double.Parse(tbSalary.Text);
-            Close();
+            cbDepartment.ItemsSource = deps;
+            cbDepartment.SelectedIndex = depIndex;
+            DataContext = empl;
+            btnAccept.Click += delegate
+            {
+                if (cbDepartment.SelectedIndex != depIndex)
+                {
+                    deps.ElementAt(cbDepartment.SelectedIndex).Members.Add(empl);
+                    deps.ElementAt(depIndex).Members.Remove(empl);
+                }
+                Close();
+            };
         }
     }
 }

@@ -16,7 +16,7 @@
         >
     <Grid>
         <Label x:Name="lblDepName"
-               Content="Label"
+               Content="{Binding Name}"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                RenderTransformOrigin="0.474,-0.154"
@@ -28,7 +28,7 @@
                  Height="30"
                  Margin="10,50,0,0"
                  TextWrapping="Wrap"
-                 Text="Id"
+                 Text="{Binding Id}"
                  VerticalAlignment="Top"
                  Width="64"
                  FontSize="{StaticResource ordinaryFontSize}"/>
@@ -38,7 +38,7 @@
                  Height="30"
                  Margin="124,50,0,0"
                  TextWrapping="Wrap"
-                 Text="Name"
+                 Text="{Binding Name}"
                  VerticalAlignment="Top"
                  Width="222"
                  FontSize="{StaticResource ordinaryFontSize}"/>

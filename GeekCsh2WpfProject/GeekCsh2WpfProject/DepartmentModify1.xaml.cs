@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +20,11 @@ namespace GeekCsh2WpfProject
     /// </summary>
     public partial class DepartmentModify1 : Window
     {
-        public DepartmentModify1()
+        public DepartmentModify1(Department dep)
         {
             InitializeComponent();
-
-            btnAccept.Click += btnAcceptClick;
-        }
-
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        private void btnAcceptClick(object sender, RoutedEventArgs e)
-        {
-            Id = int.Parse(tbId.Text);
-            Name = tbName.Text;
-            Close();
+            this.DataContext = dep;
+            btnAccept.Click += delegate { Close(); };
         }
     }
 }
