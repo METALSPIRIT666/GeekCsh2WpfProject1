@@ -15,7 +15,7 @@
         Background="AntiqueWhite">
     <Grid>
         <Label x:Name="lblEmplName"
-               Content="Label"
+               Content="{Binding Name}"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                RenderTransformOrigin="0.474,-0.154"
@@ -27,7 +27,7 @@
                  Height="30"
                  Margin="10,50,0,0"
                  TextWrapping="Wrap"
-                 Text="Id"
+                 Text="{Binding Id}"
                  VerticalAlignment="Top"
                  Width="35"
                  FontSize="{StaticResource ordinaryFontSize}"/>
@@ -36,7 +36,7 @@
                  Height="30"
                  Margin="50,50,0,0"
                  TextWrapping="Wrap"
-                 Text="Name"
+                 Text="{Binding Name}"
                  VerticalAlignment="Top"
                  Width="191"
                  FontSize="{StaticResource ordinaryFontSize}"/>
@@ -45,7 +45,7 @@
                  Height="30"
                  Margin="246,50,0,0"
                  TextWrapping="Wrap"
-                 Text="Age"
+                 Text="{Binding Age}"
                  VerticalAlignment="Top"
                  Width="32"
                  FontSize="{StaticResource ordinaryFontSize}"/>
@@ -54,7 +54,7 @@
                  Height="30"
                  Margin="283,50,0,0"
                  TextWrapping="Wrap"
-                 Text="Salary"
+                 Text="{Binding Salary}"
                  VerticalAlignment="Top"
                  Width="99"
                  FontSize="{StaticResource ordinaryFontSize}"/>
@@ -66,12 +66,22 @@
                 Width="98"
                 Height="30"
                 FontSize="{StaticResource ordinaryFontSize}"/>
+
         <ComboBox x:Name="cbDepartment"
                   HorizontalAlignment="Left"
-                  Margin="231,85,0,0"
+                  Margin="168,85,0,0"
                   VerticalAlignment="Top"
-                  Width="151"
+                  Width="214"
                   Height="30"
-                  FontSize="{StaticResource ordinaryFontSize}"/>
+                  FontSize="{StaticResource ordinaryFontSize}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" Width="40"/>
+                        <TextBlock Text="{Binding Name}" Width="120"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </Window>

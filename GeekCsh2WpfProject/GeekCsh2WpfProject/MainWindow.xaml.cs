@@ -43,70 +43,26 @@ namespace GeekCsh2WpfProject
             InitializeComponent();
             cbDepartment.ItemsSource = departments;
             lbDepartment.ItemsSource = departments;
-            cbDepartment.SelectionChanged += cbDepartmentSelectionChanged;
-            lbDepartment.MouseDoubleClick += lbDepartmentDoubleClick;
-            lbEmployee.MouseDoubleClick += lbEmployeeDoubleClick;
+
             cbDepartment.SelectedIndex = 0;
-        }
-
-        private void cbDepartmentSelectionChanged(object sender,
-            SelectionChangedEventArgs e)
-        {
-            ComboBox cmb = (ComboBox)sender;
-            if (cmb.ItemsSource != null)
-                lbEmployee.ItemsSource = departments.ElementAt(cmb.SelectedIndex).Members;
-        }
-
-        private void lbDepartmentDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            DepartmentModify1 depMod = new DepartmentModify1();
-            depMod.Owner = this;
-            depMod.lblDepName.Content = lbDepartment.SelectedItem.ToString();
-            depMod.tbId.Text = lbDepartment.SelectedItem.ToString().Split('\t')[0];
-            depMod.tbName.Text = lbDepartment.SelectedItem.ToString().Split('\t')[1];
-            depMod.Show();
-            depMod.btnAccept.Click += delegate
+            lbEmployee.ItemsSource =
+                    departments.ElementAt(cbDepartment.SelectedIndex).Members;
+            cbDepartment.SelectionChanged += delegate
             {
-                int a = lbDepartment.SelectedIndex;
-                int b = cbDepartment.SelectedIndex;
-                departments.ElementAt(a).Id = depMod.Id;
-                departments.ElementAt(a).Name = depMod.Name;
-                lbDepartment.ItemsSource = null;
-                lbDepartment.ItemsSource = departments;
-                cbDepartment.ItemsSource = null;
-                cbDepartment.ItemsSource = departments;
-                cbDepartment.SelectedIndex = b;
+                if (cbDepartment.ItemsSource != null) lbEmployee.ItemsSource =
+                    departments.ElementAt(cbDepartment.SelectedIndex).Members;
             };
-        }
 
-        private void lbEmployeeDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            EmployeeModify empMod = new EmployeeModify(departments);
-            empMod.Owner = this;
-            empMod.lblEmplName.Content = lbEmployee.SelectedItem.ToString().Split('\t')[1];
-            empMod.tbId.Text = lbEmployee.SelectedItem.ToString().Split('\t')[0];
-            empMod.tbName.Text = lbEmployee.SelectedItem.ToString().Split('\t')[1];
-            empMod.tbAge.Text = lbEmployee.SelectedItem.ToString().Split('\t')[2];
-            empMod.tbSalary.Text = lbEmployee.SelectedItem.ToString().Split('\t')[3];
-            empMod.cbDepartment.SelectedIndex = cbDepartment.SelectedIndex;
-            empMod.Show();
-            empMod.btnAccept.Click += delegate
+            lbDepartment.MouseDoubleClick += delegate
             {
-                int a = cbDepartment.SelectedIndex;
-                int b = lbEmployee.SelectedIndex;
-                departments.ElementAt(a).Members.ElementAt(b).Id = empMod.Id;
-                departments.ElementAt(a).Members.ElementAt(b).Name = empMod.Name;
-                departments.ElementAt(a).Members.ElementAt(b).Age = empMod.Age;
-                departments.ElementAt(a).Members.ElementAt(b).Salary = empMod.Salary;
-                if (empMod.cbDepartment.SelectedIndex != a)
-                {
-                    departments.ElementAt(empMod.cbDepartment.SelectedIndex)
-                        .Members.Add(departments.ElementAt(a).Members.ElementAt(b));
-                    departments.ElementAt(a).Members.RemoveAt(b);
-                }
-                lbEmployee.ItemsSource = null;
-                lbEmployee.ItemsSource =
-                    departments.ElementAt(a).Members;
+                new DepartmentModify1(lbDepartment.SelectedItem as Department).ShowDialog();
+            };
+
+            lbEmployee.MouseDoubleClick += delegate
+            {
+                new EmployeeModify(departments,
+                    lbEmployee.SelectedItem as Employee, 
+                        cbDepartment.SelectedIndex).ShowDialog();
             };
         }
     }

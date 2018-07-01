@@ -1,18 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace GeekCsh2WpfProject
 {
-    public class Department
+    public class Department : INotifyPropertyChanged
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ObservableCollection<Employee> Members;
+        private int id;
+        private string name;
 
-        public override string ToString() => $"{Id}\t{Name}";
+        public int Id
+        {
+            get => id;
+            set
+            {
+                id = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Id"));
+            }
+        }
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        public ObservableCollection<Employee> Members { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public override string ToString()
+        {
+            return $"{Id}\t{Name}";
+        }
     }
 }

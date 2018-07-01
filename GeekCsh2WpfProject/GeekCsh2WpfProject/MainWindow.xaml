@@ -16,28 +16,59 @@
             <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="lbEmployee" 
+        <ListBox x:Name="lbEmployee"
                  Grid.Column="1"
                  Margin="0,15,0,0"
                  Background="AntiqueWhite"
-                 FontSize="16"/>
+                 FontSize="16">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" Width="40"/>
+                        <TextBlock Text="{Binding Name}" Width="200"/>
+                        <TextBlock Text="{Binding Age}" Width="40"/>
+                        <TextBlock Text="{Binding Salary}" Width="100"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
-        <ComboBox x:Name="cbDepartment" 
+
+        <ComboBox x:Name="cbDepartment"
                   HorizontalAlignment="Left"
                   Margin="15,15,0,0"
                   VerticalAlignment="Top"
                   Width="263" 
                   Height="52" 
-                  FontSize="18"/>
+                  FontSize="18">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" Width="40"/>
+                        <TextBlock Text="{Binding Name}" Width="120"/>    
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <ListBox x:Name="lbDepartment"
                  HorizontalAlignment="Left"
                  Grid.Column="0"
-                 Height="99"
+                 Height="215"
                  VerticalAlignment="Top"
                  Width="263" 
                  Margin="15,98,0,0"
                  Background="Azure"
-                 FontSize="16"/>
+                 FontSize="16">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" Width="40"/>
+                        <TextBlock Text="{Binding Name}" Width="120"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
 </Window>
