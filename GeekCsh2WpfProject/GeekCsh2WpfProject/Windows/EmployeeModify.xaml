@@ -59,8 +59,8 @@
                  VerticalAlignment="Top"
                  Width="99"
                  FontSize="{StaticResource ordinaryFontSize}"/>
-        <Button x:Name="btnAccept"
-                Content="Accept"
+        <Button x:Name="btnClose"
+                Content="Close"
                 HorizontalAlignment="Left"
                 Margin="10,100,0,0"
                 VerticalAlignment="Top"

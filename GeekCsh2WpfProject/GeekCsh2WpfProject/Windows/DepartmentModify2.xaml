@@ -38,7 +38,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnAccept" Content="Accept" Grid.Column="0" Grid.Row="1"
+        <Button x:Name="btnClose" Content="Close" Grid.Column="0" Grid.Row="1"
                 Margin="5,10" FontSize="{StaticResource ordinaryFontSize}"/>
         <Button x:Name="btnEmpAdd" Content="Add Employee" Grid.Column="1" Grid.Row="1"
                 Margin="5,10" FontSize="{StaticResource ordinaryFontSize}"/>

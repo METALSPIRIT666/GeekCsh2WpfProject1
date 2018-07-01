@@ -23,7 +23,7 @@ namespace GeekCsh2WpfProject
         {
             InitializeComponent();
             DataContext = emp;
-            btnAccept.Click += delegate { Close(); };
+            btnClose.Click += delegate { Close(); };
         }
     }
 }

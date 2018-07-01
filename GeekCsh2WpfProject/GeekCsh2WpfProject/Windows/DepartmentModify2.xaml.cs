@@ -23,7 +23,7 @@ namespace GeekCsh2WpfProject
         {
             InitializeComponent();
             lbEmployee.ItemsSource = dep.Members;
-            btnAccept.Click += delegate { Close(); };
+            btnClose.Click += delegate { Close(); };
             btnEmpAdd.Click += delegate
             {
                 Employee newEmp = new Employee();
