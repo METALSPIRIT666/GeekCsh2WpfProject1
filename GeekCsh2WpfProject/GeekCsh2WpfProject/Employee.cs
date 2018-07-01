@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GeekCsh2WpfProject
 {
+    /// <summary>
+    /// Описывает класс наемного работника.
+    /// </summary>
     public class Employee : INotifyPropertyChanged
     {
         private int id;
