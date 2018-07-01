@@ -12,6 +12,8 @@ namespace GeekCsh2WpfProject
     /// </summary>
     public class Employee : INotifyPropertyChanged
     {
+        private static int currentId = 0;
+
         private int id;
         private string name;
         private int age;
@@ -55,5 +57,11 @@ namespace GeekCsh2WpfProject
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Employee()
+        {
+            id = currentId++;
+            name = $"Employee_{id}";
+        }
     }
 }

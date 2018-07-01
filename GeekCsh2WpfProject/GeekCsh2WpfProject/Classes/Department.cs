@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace GeekCsh2WpfProject
 {
@@ -8,6 +9,8 @@ namespace GeekCsh2WpfProject
     /// </summary>
     public class Department : INotifyPropertyChanged
     {
+        private static int currentId = 0;
+
         private int id;
         private string name;
         
@@ -32,6 +35,17 @@ namespace GeekCsh2WpfProject
 
         public ObservableCollection<Employee> Members { get; set; }
 
+        public Employee this[int index]
+        {
+            get => Members.ElementAt(index);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Department()
+        {
+            id = currentId++;
+            name = $"Employee_{id}";
+        }
     }
 }
