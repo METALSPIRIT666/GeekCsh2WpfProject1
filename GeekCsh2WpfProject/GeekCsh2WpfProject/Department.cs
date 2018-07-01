@@ -3,11 +3,14 @@ using System.ComponentModel;
 
 namespace GeekCsh2WpfProject
 {
+    /// <summary>
+    /// Описывает класс департамента.
+    /// </summary>
     public class Department : INotifyPropertyChanged
     {
         private int id;
         private string name;
-
+        
         public int Id
         {
             get => id;
