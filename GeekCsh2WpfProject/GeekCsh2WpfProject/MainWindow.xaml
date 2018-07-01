@@ -15,8 +15,9 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="147*"/>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="44*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="289*"/>
@@ -28,7 +29,7 @@
                   Margin="0,15,5,15"
                   FontSize="16"
                   Background="AntiqueWhite"
-                  HorizontalAlignment="Right" Width="460" Grid.RowSpan="2">
+                  HorizontalAlignment="Right" Width="460" Grid.RowSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" 
@@ -85,11 +86,13 @@
 
         <Button x:Name="btnDepAdd"
                 Grid.Column="0"
-                Grid.Row="1"
-                Margin="15,30,15,30"
+                Grid.Row="2"
+                Margin="15,15,15,15"
                 Content="Add Department"
-                FontSize="26">
-        </Button>
-        
+                FontSize="26"/>
+
+        <Button x:Name="btnInfo" Grid.Row="1" 
+                Margin="15,5" Content="Info"
+                FontSize="18" />
     </Grid>
 </Window>

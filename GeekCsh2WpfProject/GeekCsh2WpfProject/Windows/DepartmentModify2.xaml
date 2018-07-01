@@ -8,7 +8,7 @@
         Title="DepartmentModify2" 
         Height="350"
         Width="485"
-        Background="Azure"
+        Background="AntiqueWhite"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,7 +20,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ListView x:Name="lbEmployee" Margin="5" Grid.Row="0" Grid.ColumnSpan="2"
-                  FontSize="16" Background="Azure">
+                  FontSize="16" Background="AntiqueWhite">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" 
