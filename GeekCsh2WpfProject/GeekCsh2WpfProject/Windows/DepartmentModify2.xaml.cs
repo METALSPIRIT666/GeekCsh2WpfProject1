@@ -34,6 +34,10 @@ namespace GeekCsh2WpfProject
             {
                 new EmployeeBasicModify(lbEmployee.SelectedItem as Employee).ShowDialog();
             };
+            lbEmployee.KeyDown += (s, e) =>
+            {
+                if (e.Key == Key.Delete) dep.Members.Remove(lbEmployee.SelectedItem as Employee);
+            };
         }
     }
 }

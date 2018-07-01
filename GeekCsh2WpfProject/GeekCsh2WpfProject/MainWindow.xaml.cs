@@ -33,6 +33,14 @@ namespace GeekCsh2WpfProject
             lbDepartment.MouseDoubleClick += delegate { p.DepModify(); };
             lbEmployee.MouseDoubleClick += delegate { p.EmpModify(); };
             btnDepAdd.Click += delegate { p.DepAdd(); };
+            lbDepartment.KeyDown += (s, e) =>
+            {
+                if (e.Key == Key.Delete) p.DepDelete();
+            };
+            lbEmployee.KeyDown += (s, e) =>
+            {
+                if (e.Key == Key.Delete) p.EmpDelete();
+            };
         }
     }
 }

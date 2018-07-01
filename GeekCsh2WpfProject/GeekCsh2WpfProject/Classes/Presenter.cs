@@ -51,5 +51,16 @@ namespace GeekCsh2WpfProject
             model.Departments.Add(newDep);
             new DepartmentModify1(newDep).ShowDialog();
         }
+
+        public void DepDelete()
+        {
+            model.Departments.Remove(viev.lbDepartment.SelectedItem as Department);
+        }
+
+        public void EmpDelete()
+        {
+            model.Departments.ElementAt(viev.cbDepartment.SelectedIndex).Members.Remove(
+                viev.lbEmployee.SelectedItem as Employee);
+        }
     }
 }
