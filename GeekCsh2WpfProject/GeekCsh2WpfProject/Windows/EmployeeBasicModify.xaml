@@ -1,17 +1,18 @@
-﻿<Window x:Class="GeekCsh2WpfProject.EmployeeModify"
+﻿<Window x:Class="GeekCsh2WpfProject.EmployeeBasicModify"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeekCsh2WpfProject"
         mc:Ignorable="d"
-        Title="EmployeeModify"
+        Title="EmployeeBasicModify"
         Height="200"
         Width="400"
         MinHeight="200"
         MinWidth="400"
         MaxHeight="200"
         MaxWidth="400"
+        WindowStartupLocation="CenterScreen"
         Background="AntiqueWhite">
     <Grid>
         <Label x:Name="lblEmplName"
@@ -58,30 +59,13 @@
                  VerticalAlignment="Top"
                  Width="99"
                  FontSize="{StaticResource ordinaryFontSize}"/>
-        <Button x:Name="btnAccept"
-                Content="Accept"
+        <Button x:Name="btnClose"
+                Content="Close"
                 HorizontalAlignment="Left"
-                Margin="10,130,0,0"
+                Margin="10,100,0,0"
                 VerticalAlignment="Top"
-                Width="98"
-                Height="30"
+                Width="135"
+                Height="60"
                 FontSize="{StaticResource ordinaryFontSize}"/>
-
-        <ComboBox x:Name="cbDepartment"
-                  HorizontalAlignment="Left"
-                  Margin="168,85,0,0"
-                  VerticalAlignment="Top"
-                  Width="214"
-                  Height="30"
-                  FontSize="{StaticResource ordinaryFontSize}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}" Width="40"/>
-                        <TextBlock Text="{Binding Name}" Width="120"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
     </Grid>
 </Window>

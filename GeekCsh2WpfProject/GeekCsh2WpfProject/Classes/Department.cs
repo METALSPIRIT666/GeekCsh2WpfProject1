@@ -45,7 +45,7 @@ namespace GeekCsh2WpfProject
         public Department()
         {
             id = currentId++;
-            name = $"Employee_{id}";
+            name = $"Department_{id}";
         }
     }
 }

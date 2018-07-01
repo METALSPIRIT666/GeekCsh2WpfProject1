@@ -62,6 +62,8 @@ namespace GeekCsh2WpfProject
         {
             id = currentId++;
             name = $"Employee_{id}";
+            age = 21;
+            salary = 40000;
         }
     }
 }

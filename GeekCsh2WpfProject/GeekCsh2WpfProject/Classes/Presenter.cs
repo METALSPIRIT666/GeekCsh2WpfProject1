@@ -9,8 +9,8 @@ namespace GeekCsh2WpfProject
 {
     public class Presenter
     {
-        private Model model;
         private MainWindow viev;
+        private Model model;
 
         public Presenter(MainWindow mW)
         {
@@ -43,6 +43,24 @@ namespace GeekCsh2WpfProject
         {
             new EmployeeModify(model.Departments, viev.lbEmployee.SelectedItem as Employee,
                         viev.cbDepartment.SelectedIndex).ShowDialog();
+        }
+
+        public void DepAdd()
+        {
+            Department newDep = new Department();
+            model.Departments.Add(newDep);
+            new DepartmentModify1(newDep).ShowDialog();
+        }
+
+        public void DepDelete()
+        {
+            model.Departments.Remove(viev.lbDepartment.SelectedItem as Department);
+        }
+
+        public void EmpDelete()
+        {
+            model.Departments.ElementAt(viev.cbDepartment.SelectedIndex).Members.Remove(
+                viev.lbEmployee.SelectedItem as Employee);
         }
     }
 }

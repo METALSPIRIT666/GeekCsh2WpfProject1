@@ -24,7 +24,8 @@ namespace GeekCsh2WpfProject
         {
             InitializeComponent();
             this.DataContext = dep;
-            btnAccept.Click += delegate { Close(); };
+            btnClose.Click += delegate { Close(); };
+            btnEmployees.Click += delegate{ new DepartmentModify2(dep).ShowDialog(); };
         }
     }
 }
