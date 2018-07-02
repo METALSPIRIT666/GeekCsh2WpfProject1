@@ -27,6 +27,7 @@ namespace GeekCsh2WpfProject
             cbDepartment.ItemsSource = deps;
             cbDepartment.SelectedIndex = depIndex;
             DataContext = empl;
+            lblEmplName.DataContext = tbName;
             btnClose.Click += delegate
             {
                 if (cbDepartment.SelectedIndex != depIndex)

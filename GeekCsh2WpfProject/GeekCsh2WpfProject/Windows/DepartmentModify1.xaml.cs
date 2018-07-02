@@ -24,6 +24,7 @@ namespace GeekCsh2WpfProject
         {
             InitializeComponent();
             this.DataContext = dep;
+            lblDepName.DataContext = tbName;
             btnClose.Click += delegate { Close(); };
         }
     }
