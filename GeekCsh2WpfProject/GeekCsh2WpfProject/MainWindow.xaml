@@ -20,15 +20,17 @@
             <RowDefinition Height="44*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="289*"/>
-            <ColumnDefinition Width="483*"/>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="482*"/>
         </Grid.ColumnDefinitions>
 
         <ListView x:Name="lbEmployee"
-                  Grid.Column="1"
+                  Grid.Column="2"
                   Margin="0,15,5,15"
                   FontSize="16"
                   Background="AntiqueWhite"
+                  TabIndex="1"
                   HorizontalAlignment="Right" Width="460" Grid.RowSpan="3">
             <ListView.View>
                 <GridView>
@@ -48,37 +50,20 @@
             </ListView.View>
         </ListView>
 
-        <ComboBox x:Name="cbDepartment"
-                  Margin="18,15,11,0"
-                  VerticalAlignment="Top" 
-                  Height="30"
-                  FontSize="18">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}" Width="40"/>
-                        <TextBlock Text="{Binding Name}" Width="120"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
         <ListView x:Name="lbDepartment"                  
-                  HorizontalAlignment="Left"
                   Grid.Column="0"
-                  Height="214"
-                  VerticalAlignment="Top"
-                  Width="260" 
-                  Margin="15,64,0,0"
+                  Grid.Row="0"
+                  Margin="15"
                   Background="Azure"
-                  FontSize="16">
+                  FontSize="16" Grid.ColumnSpan="2"
+                  TabIndex="0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" 
                                     Width="50" 
                                     DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Name"
-                                    Width="200" 
+                                    Width="180" 
                                     DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
             </ListView.View>
@@ -89,10 +74,19 @@
                 Grid.Row="2"
                 Margin="15,15,15,15"
                 Content="Add Department"
-                FontSize="26"/>
+                TabIndex="2"
+                FontSize="14" />
+        <Button x:Name="btnEmpAdd"
+                Grid.Column="1"
+                Grid.Row="2"
+                Margin="15,15,15,15"
+                Content="Add Employee"
+                TabIndex="3"
+                FontSize="14" />
 
         <Button x:Name="btnInfo" Grid.Row="1" 
                 Margin="15,5" Content="Info"
-                FontSize="18" />
+                FontSize="18" Grid.ColumnSpan="2"
+                TabIndex="4"/>
     </Grid>
 </Window>

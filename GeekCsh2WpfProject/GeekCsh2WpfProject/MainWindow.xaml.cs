@@ -29,16 +29,12 @@ namespace GeekCsh2WpfProject
 
             p.Init();
 
-            cbDepartment.SelectionChanged += delegate { p.DepSelectionChanged(); };
+            lbDepartment.SelectionChanged += delegate { p.DepSelectionChanged(); };
             lbDepartment.MouseDoubleClick += delegate { p.DepModify(); };
             lbEmployee.MouseDoubleClick += delegate { p.EmpModify(); };
             btnDepAdd.Click += delegate { p.DepAdd(); };
-            btnInfo.Click += delegate 
-            {
-                MessageBox.Show("DoubleClick on item to edit." +
-                    " DELETE key on item to remove.", "INFO",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
-            };
+            btnEmpAdd.Click += delegate { p.EmpAdd(); };
+            btnInfo.Click += delegate { p.ProvideInfo(); };
             lbDepartment.KeyDown += (s, e) =>
             {
                 if (e.Key == Key.Delete) p.DepDelete();

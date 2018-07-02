@@ -52,14 +52,5 @@
                 Height="60"
                 FontSize="{StaticResource ordinaryFontSize}"/>
 
-        <Button x:Name="btnEmployees"
-                Content="Employees"
-                HorizontalAlignment="Left"
-                Margin="200,100,0,0"
-                VerticalAlignment="Top"
-                Width="146"
-                Height="45"
-                FontSize="{StaticResource ordinaryFontSize}"/>
-
     </Grid>
 </Window>

@@ -46,6 +46,7 @@ namespace GeekCsh2WpfProject
         {
             id = currentId++;
             name = $"Department_{id}";
+            Members = new ObservableCollection<Employee>();
         }
     }
 }
