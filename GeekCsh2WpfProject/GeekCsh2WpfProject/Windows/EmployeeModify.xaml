@@ -16,7 +16,7 @@
         Background="AntiqueWhite">
     <Grid>
         <Label x:Name="lblEmplName"
-               Content="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
+               Content="{Binding Name}"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                RenderTransformOrigin="0.474,-0.154"

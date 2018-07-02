@@ -16,7 +16,7 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="lblDepName"
-               Content="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
+               Content="{Binding Name}"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                RenderTransformOrigin="0.474,-0.154"
