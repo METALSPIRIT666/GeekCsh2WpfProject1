@@ -38,6 +38,7 @@ namespace GeekCsh2WpfProject
             CurrentDepartment = viev.lbDepartment.SelectedItem as Department;
             viev.lbEmployee.ItemsSource = CurrentDepartment != null ?
                 CurrentDepartment.Members : null;
+            viev.lbEmployee.SelectedIndex = 0;
         }
 
         public void DepModify()
@@ -64,7 +65,7 @@ namespace GeekCsh2WpfProject
         public void EmpAdd()
         {
             Employee newEmp = new Employee();
-            if (CurrentDepartment != null) viev.lbDepartment.SelectedIndex = 0;
+            if (CurrentDepartment == null) viev.lbDepartment.SelectedIndex = 0;
             CurrentDepartment.Members.Add(newEmp);
             viev.lbEmployee.SelectedItem = newEmp;
             viev.lbEmployee.Focus();
