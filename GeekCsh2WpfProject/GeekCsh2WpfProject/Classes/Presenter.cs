@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace GeekCsh2WpfProject
 {
@@ -90,9 +90,40 @@ namespace GeekCsh2WpfProject
 
         public void ProvideInfo()
         {
-            MessageBox.Show("DoubleClick on item to edit." +
-                    " DELETE key on item to remove.", "INFO",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("DoubleClick on item to edit.\n" +
+                    "DELETE key on item to remove.\n" +
+                        "F5 to add department.\nF6 to add employee.", "INFO",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public void LbDepKeyPressed(KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Delete: { DepDelete(); break; }
+                case Key.Enter: { DepModify(); break; }
+                case Key.Right: { viev.lbEmployee.Focus(); break; }
+            }
+        }
+
+        public void LbEmpKeyPressed(KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Delete: { EmpDelete(); break; }
+                case Key.Enter: { EmpModify(); break; }
+                case Key.Left: { viev.lbDepartment.Focus(); break; }
+            }
+        }
+
+        public void WindowKeyPressed(KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.F1: { ProvideInfo(); break; }
+                case Key.F5: { DepAdd(); break; }
+                case Key.F6: { EmpAdd(); break; }
+            }
         }
     }
 }

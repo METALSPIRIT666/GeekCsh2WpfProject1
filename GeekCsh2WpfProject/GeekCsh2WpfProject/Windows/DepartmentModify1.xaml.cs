@@ -26,6 +26,8 @@ namespace GeekCsh2WpfProject
             this.DataContext = dep;
             lblDepName.DataContext = tbName;
             btnClose.Click += delegate { Close(); };
+            KeyDown += (s, e) => { if (e.Key == Key.Enter ||
+                e.Key == Key.Escape) Close(); };
         }
     }
 }

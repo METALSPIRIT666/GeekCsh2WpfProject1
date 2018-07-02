@@ -35,14 +35,9 @@ namespace GeekCsh2WpfProject
             btnDepAdd.Click += delegate { p.DepAdd(); };
             btnEmpAdd.Click += delegate { p.EmpAdd(); };
             btnInfo.Click += delegate { p.ProvideInfo(); };
-            lbDepartment.KeyDown += (s, e) =>
-            {
-                if (e.Key == Key.Delete) p.DepDelete();
-            };
-            lbEmployee.KeyDown += (s, e) =>
-            {
-                if (e.Key == Key.Delete) p.EmpDelete();
-            };
+            lbDepartment.KeyDown += (s, e) => p.LbDepKeyPressed(e);
+            lbEmployee.KeyDown += (s, e) => p.LbEmpKeyPressed(e);
+            KeyDown += (s, e) => p.WindowKeyPressed(e); 
         }
     }
 }

@@ -56,7 +56,7 @@
                   Margin="15"
                   Background="Azure"
                   FontSize="16" Grid.ColumnSpan="2"
-                  TabIndex="0">
+                  TabIndex="-1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" 
@@ -74,19 +74,16 @@
                 Grid.Row="2"
                 Margin="15,15,15,15"
                 Content="Add Department"
-                TabIndex="2"
                 FontSize="14" />
         <Button x:Name="btnEmpAdd"
                 Grid.Column="1"
                 Grid.Row="2"
                 Margin="15,15,15,15"
                 Content="Add Employee"
-                TabIndex="3"
                 FontSize="14" />
 
         <Button x:Name="btnInfo" Grid.Row="1" 
                 Margin="15,5" Content="Info"
-                FontSize="18" Grid.ColumnSpan="2"
-                TabIndex="4"/>
+                FontSize="18" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
