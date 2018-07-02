@@ -10,7 +10,6 @@ namespace GeekCsh2WpfProject
     public class Model
     {
         public ObservableCollection<Department> Departments { get; set; }
-        public Department CurrentDepartment { get; set; }
 
         public Model()
         {
@@ -43,7 +42,6 @@ namespace GeekCsh2WpfProject
                         new Employee() {Age = 24, Salary = 35000}
                     }},
             };
-            CurrentDepartment = Departments.ElementAt(0);
         }
     }
 }

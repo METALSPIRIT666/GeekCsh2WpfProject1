@@ -30,19 +30,19 @@ namespace GeekCsh2WpfProject
             viev.lbDepartment.Focus();
 
             viev.lbEmployee.ItemsSource =
-                    model.Departments.ElementAt(viev.lbDepartment.SelectedIndex).Members;
+                    CurrentDepartment.Members;
         }
 
         public void DepSelectionChanged()
         {
-            viev.lbEmployee.ItemsSource = viev.lbDepartment.SelectedItem != null ?
-                model.Departments.ElementAt(
-                    viev.lbDepartment.SelectedIndex).Members : null;
+            CurrentDepartment = viev.lbDepartment.SelectedItem as Department;
+            viev.lbEmployee.ItemsSource = CurrentDepartment != null ?
+                CurrentDepartment.Members : null;
         }
 
         public void DepModify()
         {
-            new DepartmentModify1(viev.lbDepartment.SelectedItem as Department).ShowDialog();
+            new DepartmentModify1(CurrentDepartment).ShowDialog();
         }
 
         public void EmpModify()
@@ -64,9 +64,8 @@ namespace GeekCsh2WpfProject
         public void EmpAdd()
         {
             Employee newEmp = new Employee();
-            if (viev.lbDepartment.SelectedItem != null) viev.lbDepartment.SelectedIndex = 0;
-            model.Departments.ElementAt(
-                viev.lbDepartment.SelectedIndex).Members.Add(newEmp);
+            if (CurrentDepartment != null) viev.lbDepartment.SelectedIndex = 0;
+            CurrentDepartment.Members.Add(newEmp);
             viev.lbEmployee.SelectedItem = newEmp;
             viev.lbEmployee.Focus();
             new EmployeeModify(model.Departments,
@@ -76,15 +75,16 @@ namespace GeekCsh2WpfProject
         public void DepDelete()
         {
             int ind = viev.lbDepartment.SelectedIndex;
-            model.Departments.Remove(viev.lbDepartment.SelectedItem as Department);
-            viev.lbDepartment.SelectedIndex = --ind;
+            model.Departments.Remove(CurrentDepartment);
+            viev.lbDepartment.SelectedIndex = ind > 0 ? --ind : ind;
             if (model.Departments.Count == 0) viev.btnEmpAdd.IsEnabled = false;
         }
 
         public void EmpDelete()
         {
-            model.Departments.ElementAt(viev.lbEmployee.SelectedIndex).Members.Remove(
-                viev.lbEmployee.SelectedItem as Employee);
+            int ind = viev.lbEmployee.SelectedIndex;
+            CurrentDepartment.Members.Remove(viev.lbEmployee.SelectedItem as Employee);
+            viev.lbEmployee.SelectedIndex = ind > 0 ? --ind : ind;
         }
 
         public void ProvideInfo()
