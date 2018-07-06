@@ -24,7 +24,7 @@ namespace GeekCsh2WpfProject
         {
             InitializeComponent();
             this.DataContext = dep;
-            btnClose.Click += delegate { Close(); Owner.UpdateLayout(); };
+            btnClose.Click += delegate { Close(); };
             KeyDown += (s, e) => { if (e.Key == Key.Enter ||
                 e.Key == Key.Escape) Close(); };
         }
