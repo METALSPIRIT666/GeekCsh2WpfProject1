@@ -17,7 +17,8 @@ namespace GeekCsh2WpfProject
         private int id;
         private string name;
         private int age;
-        private double salary;
+        private Single salary;
+        private Department department;
 
         public int Id
         {
@@ -46,7 +47,7 @@ namespace GeekCsh2WpfProject
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Age"));
             }
         }
-        public double Salary
+        public Single Salary
         {
             get => salary;
             set
@@ -55,15 +56,30 @@ namespace GeekCsh2WpfProject
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Salary"));
             }
         }
+        public Department Department
+        {
+            get => department;
+            set
+            {
+                department = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Department"));
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Employee()
+        public Employee(Department dep)
         {
             id = currentId++;
             name = $"Employee_{id}";
             age = 21;
             salary = 40000;
+            department = dep;
+        }
+
+        private Employee()
+        {
         }
     }
 }
