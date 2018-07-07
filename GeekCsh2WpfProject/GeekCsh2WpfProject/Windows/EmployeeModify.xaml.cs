@@ -33,6 +33,7 @@ namespace GeekCsh2WpfProject
                 {
                     deps.ElementAt(cbDepartment.SelectedIndex).Members.Add(empl);
                     deps.ElementAt(depIndex).Members.Remove(empl);
+                    empl.Department = deps.ElementAt(cbDepartment.SelectedIndex);
                 }
                 Close();
             };
