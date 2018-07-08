@@ -44,17 +44,20 @@ namespace GeekCsh2WpfProject
         public void DepModify()
         {
             new DepartmentModify1(CurrentDepartment).ShowDialog();
+            model.DepEdit(CurrentDepartment);
         }
 
         public void EmpModify()
         {
             new EmployeeModify(model.Departments, viev.lbEmployee.SelectedItem as Employee,
                         viev.lbDepartment.SelectedIndex).ShowDialog();
+            model.EmpEdit(viev.lbEmployee.SelectedItem as Employee);
         }
 
         public void DepAdd()
         {
             Department newDep = new Department();
+            model.Departments.Add(newDep);
             viev.lbDepartment.SelectedItem = newDep;
             viev.lbDepartment.Focus();
             new DepartmentModify1(newDep).ShowDialog();
@@ -77,6 +80,7 @@ namespace GeekCsh2WpfProject
         public void DepDelete()
         {
             int ind = viev.lbDepartment.SelectedIndex;
+            model.DepDelete(CurrentDepartment);
             model.Departments.Remove(CurrentDepartment);
             viev.lbDepartment.SelectedIndex = ind > 0 ? --ind : ind;
             if (model.Departments.Count == 0) viev.btnEmpAdd.IsEnabled = false;
@@ -85,6 +89,7 @@ namespace GeekCsh2WpfProject
         public void EmpDelete()
         {
             int ind = viev.lbEmployee.SelectedIndex;
+            model.EmpDelete(viev.lbEmployee.SelectedItem as Employee);
             CurrentDepartment.Members.Remove(viev.lbEmployee.SelectedItem as Employee);
             viev.lbEmployee.SelectedIndex = ind > 0 ? --ind : ind;
         }

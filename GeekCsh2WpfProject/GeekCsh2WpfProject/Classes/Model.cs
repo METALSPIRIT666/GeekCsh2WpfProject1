@@ -14,180 +14,140 @@ namespace GeekCsh2WpfProject
         public ObservableCollection<Department> Departments { get; set; }
 
         private SqlConnection connection;
-        private SqlDataAdapter employeeAdapter;
-        private SqlDataAdapter departmentAdapter;
-        private DataTable departmentTable;
-        private DataTable employeeTable;
+        private string sql = @" SELECT * FROM Departments";
+        private SqlCommand command;
+        private SqlDataReader reader;
+        SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder
+        {
+            DataSource = @"(localdb)\MSSQLLocalDB",
+            InitialCatalog = "Departments",
+        };
 
         public Model()
         {
-            //Departments = new ObservableCollection<Department>()
-            //{
-            //    new Department() {Name = "Programmers", Members =
-            //        new ObservableCollection<Employee>()
-            //        {
-            //            new Employee() {Age = 25, Salary = 80000},
-            //            new Employee() {Age = 35, Salary = 850000},
-            //            new Employee() {Age = 23, Salary = 90000},
-            //            new Employee() {Age = 26, Salary = 100000},
-            //            new Employee() {Age = 21, Salary = 60000}
-            //        }},
-            //    new Department() {Name = "Workers", Members =
-            //        new ObservableCollection<Employee>()
-            //        {
-            //            new Employee() {Age = 46, Salary = 30000},
-            //            new Employee() {Age = 28, Salary = 30000},
-            //            new Employee() {Age = 52, Salary = 40000},
-            //            new Employee() {Age = 35, Salary = 45000}
-            //        }},
-            //    new Department() {Name = "Managers", Members =
-            //        new ObservableCollection<Employee>()
-            //        {
-            //            new Employee() {Age = 25, Salary = 40000},
-            //            new Employee() {Age = 28, Salary = 50000},
-            //            new Employee() {Age = 28, Salary = 60000},
-            //            new Employee() {Age = 32, Salary = 55000},
-            //            new Employee() {Age = 24, Salary = 35000}
-            //        }},
-            //};
-
             Departments = new ObservableCollection<Department>();
-
-            var connectionStringBuilder = new SqlConnectionStringBuilder
-            {
-                DataSource = @"(localdb)\MSSQLLocalDB",
-                InitialCatalog = "Departments",
-            };
+    
             connection = new SqlConnection(connectionStringBuilder.ConnectionString);
-            employeeAdapter = new SqlDataAdapter();
-            employeeAdapter.TableMappings.Add("Employees", "Employees");
-            departmentAdapter = new SqlDataAdapter();
-            //departmentAdapter.TableMappings.Add("Departments", "Departments");
 
-            #region Employee commands
-
-            // select
-            SqlCommand command =
-                new SqlCommand("SELECT Id, Name, Age, Salary, DepartmentId FROM Employees",
-                connection);
-            employeeAdapter.SelectCommand = command;
-
-            // insert
-            command = new SqlCommand(@"INSERT INTO Employees (Name, Age, Salary, DepartmentId) 
-                          VALUES (@Name, @Age, @Salary, @DepartmentId); SET @Id = @@IDENTITY;",
-                          connection);
-
-            command.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
-            command.Parameters.Add("@Age", SqlDbType.Int, -1, "Age");
-            command.Parameters.Add("@Salary", SqlDbType.Decimal, -1, "Salary");
-            command.Parameters.Add("@DepartmentId", SqlDbType.Int, -1, "DepartmentId");
-
-            SqlParameter param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-
-            param.Direction = ParameterDirection.Output;
-            employeeAdapter.InsertCommand = command;
-
-            // update
-            command = new SqlCommand(@"UPDATE Employees SET Name = @Name,
-Age = @Age, Salary = @Salary, DepartmentId = @DepartmentId WHERE Id = @Id", connection);
-
-            command.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
-            command.Parameters.Add("@Age", SqlDbType.Int, -1, "Age");
-            command.Parameters.Add("@Salary", SqlDbType.Decimal, -1, "Salary");
-            command.Parameters.Add("@DepartmentId", SqlDbType.Int, -1, "DepartmentId");
-            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-
-            param.SourceVersion = DataRowVersion.Original;
-
-            employeeAdapter.UpdateCommand = command;
-
-            //delete
-            command = new SqlCommand("DELETE FROM Employees WHERE Id = @Id", connection);
-            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-            param.SourceVersion = DataRowVersion.Original;
-            employeeAdapter.DeleteCommand = command;
-
-            #endregion
-
-            #region Department commands
-
-            // select
-            command = new SqlCommand("SELECT Id, Name FROM dbo.Departments", connection);
-            departmentAdapter.SelectCommand = command;
-
-            // insert
-            command = new SqlCommand(@"INSERT INTO dbo.Departments (Name) 
-                          VALUES (@Name); SET @Id = @@IDENTITY;",
-                          connection);
-
-            command.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
-            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-            param.Direction = ParameterDirection.Output;
-            departmentAdapter.InsertCommand = command;
-
-            // update
-            command = new SqlCommand(@"UPDATE dbo.Departments SET Name = @Name
-WHERE Id = @Id", connection);
-
-            command.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
-            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-            param.SourceVersion = DataRowVersion.Original;
-            departmentAdapter.UpdateCommand = command;
-
-            //delete
-            command = new SqlCommand("DELETE FROM dbo.Departments WHERE Id = @Id", connection);
-            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-            param.SourceVersion = DataRowVersion.Original;
-            departmentAdapter.DeleteCommand = command;
-
-            #endregion
-
-            employeeTable = new DataTable();
-            departmentTable = new DataTable();
-            employeeAdapter.Fill(employeeTable);
-            departmentAdapter.Fill(departmentTable);
-
-            //Заполнение коллекции Department данными из бд
-            for (int i = 0; i < departmentTable.Rows.Count; i++)
+            //Считываем базу и формируем коллекцию Departments
+            using (connection)
             {
-                DataRow dr = departmentTable.Rows[i];
-                Department newDep = new Department();
-                newDep.Id = (int)dr["Id"];
-                newDep.Name = (string)dr["Name"];
-                Departments.Add(newDep);
-            }
-            for (int i = 0; i < employeeTable.Rows.Count; i++)
-            {
-                DataRow dr = employeeTable.Rows[i];
-                Employee newEmp = new Employee(Departments.ElementAt((int)dr["DepartmentId"] - 1));
-                newEmp.Id = (int)dr["Id"];
-                newEmp.Name = (string)dr["Name"];
-                newEmp.Age = (int)dr["Age"];
-                newEmp.Salary = (Single)dr["Salary"];
-                Departments.ElementAt((int)dr["DepartmentId"] - 1).Members.Add(newEmp);
+                connection.Open();
+                sql = @" SELECT * FROM Departments";
+                command = new SqlCommand(sql, connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Department newDep = new Department();
+                    newDep.Id = (int)reader["Id"];
+                    newDep.Name = (string)reader["Name"];
+                    
+                    Departments.Add(newDep);
+                }
+                reader.Close();
+                foreach (Department dep in Departments)
+                {
+                    sql = $@" SELECT * FROM Employees WHERE DepartmentId = {dep.Id}";
+                    command = new SqlCommand(sql, connection);
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Employee newEmp = new Employee(dep);
+                        newEmp.Id = (int)reader["Id"];
+                        newEmp.Name = (string)reader["Name"];
+                        newEmp.Age = (int)reader["Age"];
+                        newEmp.Salary = (Single)reader["Salary"];
+                        dep.Members.Add(newEmp);
+                    }
+                    reader.Close();
+                }
             }
         }
 
         public void DepAdd(Department dep)
         {
-            Departments.Add(dep);
-            DataRow newRow = departmentTable.NewRow();
-            newRow["Id"] = dep.Id;
-            newRow["Name"] = dep.Name;
-            departmentTable.Rows.Add(newRow);
-            departmentAdapter.Update(departmentTable);
+            using (connection = new SqlConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+
+                sql = $@"INSERT INTO Departments (Name) VALUES ('{dep.Name}')";
+                command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+
+                sql = $@"SELECT Id FROM Departments WHERE Name = '{dep.Name}'";
+                command = new SqlCommand(sql, connection);
+                dep.Id = (int)command.ExecuteScalar();
+            }
+        }
+
+        public void DepEdit(Department dep)
+        {
+            using (connection = new SqlConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                sql = $@"UPDATE Departments SET Name = '{dep.Name}' 
+                    WHERE Id = {dep.Id}";
+                command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DepDelete(Department dep)
+        {
+            using (connection = new SqlConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                sql = $@"DELETE FROM Departments WHERE Id = {dep.Id}";
+                command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+            }
         }
 
         public void EmpAdd(Employee emp)
         {
-            DataRow newRow = employeeTable.NewRow();
-            newRow["Id"] = emp.Id;
-            newRow["Name"] = emp.Name;
-            newRow["Age"] = emp.Age;
-            newRow["Salary"] = emp.Salary;
-            newRow["DepartmentId"] = Departments.IndexOf(emp.Department) + 1;
-            employeeTable.Rows.Add(newRow);
-            employeeAdapter.Update(employeeTable);
+            using (connection = new SqlConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                sql = $@"SELECT Id FROM Departments WHERE Name = '{emp.Department.Name}'";
+                command = new SqlCommand(sql, connection);
+                int depId = (int)command.ExecuteScalar();
+
+                sql = $@"INSERT INTO Employees (Name, Age, Salary, DepartmentId)
+                    VALUES ('{emp.Name}', {emp.Age}, {emp.Salary}, {depId})";
+                command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+
+                sql = $@"SELECT Id FROM Employees WHERE Name = '{emp.Name}'";
+                command = new SqlCommand(sql, connection);
+                emp.Id = (int)command.ExecuteScalar();
+            }
+        }
+
+        public void EmpEdit(Employee emp)
+        {
+            using (connection = new SqlConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                sql = $@"SELECT Id FROM Departments WHERE Name = '{emp.Department.Name}'";
+                command = new SqlCommand(sql, connection);
+                int depId = (int)command.ExecuteScalar();
+
+                sql = $@"UPDATE Employees SET Name = '{emp.Name}', Age = {emp.Age},
+                    Salary = {emp.Salary}, DepartmentId = {depId} WHERE Id = {emp.Id}";
+                command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void EmpDelete(Employee emp)
+        {
+            using (connection = new SqlConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+                sql = $@"DELETE FROM Employees WHERE Id = {emp.Id}";
+                command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+            }
         }
 
     }

@@ -9,7 +9,7 @@ namespace GeekCsh2WpfProject
     /// </summary>
     public class Department : INotifyPropertyChanged
     {
-        private static int currentId = 0;
+        private static int currentId = 1;
 
         private int id;
         private string name;

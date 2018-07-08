@@ -23,15 +23,6 @@
                Height="45"
                Width="392"
                FontSize="20"/>
-        <TextBox x:Name="tbId"
-                 HorizontalAlignment="Left"
-                 Height="30"
-                 Margin="10,50,0,0"
-                 TextWrapping="Wrap"
-                 Text="{Binding Id}"
-                 VerticalAlignment="Top"
-                 Width="35"
-                 FontSize="{StaticResource ordinaryFontSize}"/>
         <TextBox x:Name="tbName"
                  HorizontalAlignment="Left"
                  Height="30"
