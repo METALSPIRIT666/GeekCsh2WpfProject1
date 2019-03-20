@@ -1,4 +1,4 @@
-﻿1. Создать БД с именем Deprtments​, имя сервера (localdb)\MSSQLLocalDB​.
+﻿1. Создать БД с именем Departments​, имя сервера (localdb)\MSSQLLocalDB​.
 
 2. Создать таблицу Departments
 CREATE TABLE [dbo].[Departments] (
