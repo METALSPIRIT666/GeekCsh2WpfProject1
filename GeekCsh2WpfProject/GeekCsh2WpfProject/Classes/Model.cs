@@ -14,7 +14,7 @@ namespace GeekCsh2WpfProject
         public ObservableCollection<Department> Departments { get; set; }
 
         private SqlConnection connection;
-        private string sql = @" SELECT * FROM Departments";
+        private string sql = $@" SELECT * FROM Departments";
         private SqlCommand command;
         private SqlDataReader reader;
         SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder
@@ -33,7 +33,7 @@ namespace GeekCsh2WpfProject
             using (connection)
             {
                 connection.Open();
-                sql = @" SELECT * FROM Departments";
+                sql = $@" SELECT * FROM Departments";
                 command = new SqlCommand(sql, connection);
                 reader = command.ExecuteReader();
                 while (reader.Read())
@@ -60,7 +60,17 @@ namespace GeekCsh2WpfProject
                         dep.Members.Add(newEmp);
                     }
                     reader.Close();
+
                 }
+
+                //Достаем из базы актуальные значения "незанятых" Id
+                sql = @" SELECT IDENT_CURRENT('Departments')";
+                command = new SqlCommand(sql, connection);
+                Department.currentId = Decimal.ToInt32((decimal)command.ExecuteScalar()) + 1;
+
+                sql = @" SELECT IDENT_CURRENT('Employees')";
+                command = new SqlCommand(sql, connection);
+                Employee.currentId = Decimal.ToInt32((decimal)command.ExecuteScalar()) + 1;
             }
         }
 
